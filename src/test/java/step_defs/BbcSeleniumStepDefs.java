@@ -1,8 +1,7 @@
 package step_defs;
 
 import BbcWebsite.BbcSite;
-import cucumber.api.PendingException;
-import io.cucumber.java.en.And;
+import io.cucumber.java.After;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -49,9 +48,19 @@ public class BbcSeleniumStepDefs {
     @Then("I receive an error of {string}")
     public void i_receive_an_error_of(String errorMsg) {
         bbcSite.bbcSignInPage().clicksubmitButton();
-        Assert.assertEquals(errorMsg, bbcSite.bbcSignInPage().getErrorText());
+        Assert.assertEquals(errorMsg, bbcSite.bbcSignInPage().getPasswordErrorText());
     }
 
 
+    @Then("I receive a username error of {string}")
+    public void i_receive_an_UsernameErrorOf(String arg0) {
+        bbcSite.bbcSignInPage().clicksubmitButton();
+        Assert.assertEquals(arg0, bbcSite.bbcSignInPage().emailErrorText());
+    }
 
+    //@Then("I Close the window")
+    @After
+    public void iCloseTheWindow() {
+        bbcSite.quit();
+    }
 }

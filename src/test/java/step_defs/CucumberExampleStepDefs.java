@@ -12,7 +12,7 @@ public class CucumberExampleStepDefs {
     double capturedDouble;
     String capturedWord;
 
-    @Given("^I provide an integer of (\\d+)$")
+    @Given("I provide an integer of {int}")
     public void i_provide_an_integer_of(int capturedInt) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         this.capturedInt = capturedInt;
@@ -24,10 +24,11 @@ public class CucumberExampleStepDefs {
         Assert.assertEquals(14, capturedInt);
     }
 
-    @Given("^I provide an float of (\\d+)\\.(\\d+)$")
-    public void i_provide_an_float_of(int arg1, int arg2) throws Throwable {
+    //@Given("^I provide an float of (\\d+)\\.(\\d+)$")
+    @Given("I provide an float of {float}")
+    public void i_provide_an_float_of(double arg1) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
-        capturedDouble = Double.parseDouble(arg1 + "." + arg2);
+        capturedDouble = arg1;
     }
 
     @Then("^I will be able to test the float$")
@@ -36,7 +37,7 @@ public class CucumberExampleStepDefs {
         Assert.assertEquals(21.5d, capturedDouble,0.0);
     }
 
-    @Given("^I provide specific word (.*)")
+    @Given("I provide specific word {word}")
     public void i_provide_specific_word_banana(String capturedWord) throws Throwable {
         // Write code here that turns the phrase above into concrete actions
         this.capturedWord = capturedWord;

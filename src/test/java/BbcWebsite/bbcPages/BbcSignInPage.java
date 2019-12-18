@@ -13,6 +13,7 @@ public class BbcSignInPage {
     private By usernameFieldID = By.id("user-identifier-input");
     private By passwordFieldID = By.id("password-input");
     private By submitButtonID = By.id("submit-button");
+    private By incorrctemailID = By.id("form-message-username");
     private By incorrectPasswordErrorID = By.id("form-message-password");
     private String errorText = "Sorry, that password isn't valid. Please include a letter.";
 
@@ -38,6 +39,10 @@ public class BbcSignInPage {
 
     public String getPasswordErrorText(){
         return driver.findElement(incorrectPasswordErrorID).getText();
+    }
+
+    public String emailErrorText(){
+        return driver.findElement(incorrctemailID).getText();
     }
 
     public String getSignInPageURL() { return signInPageURL;  }
