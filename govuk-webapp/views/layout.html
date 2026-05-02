@@ -1,0 +1,23 @@
+{% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/footer/macro.njk" import govukFooter %}
+
+<!DOCTYPE html>
+<html lang="en" class="govuk-template">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>{% block pageTitle %}{{ serviceName }}{% endblock %}</title>
+    <link rel="stylesheet" href="/stylesheets/application.css">
+  </head>
+  <body class="govuk-template__body">
+    {{ govukHeader({ serviceName: serviceName, serviceUrl: "/" }) }}
+    <div class="govuk-width-container">
+      <main class="govuk-main-wrapper" id="main-content" role="main">
+        {% block content %}{% endblock %}
+      </main>
+    </div>
+    {{ govukFooter({}) }}
+    <script src="/assets/govuk-frontend.min.js"></script>
+    <script>window.GOVUKFrontend.initAll()</script>
+  </body>
+</html>

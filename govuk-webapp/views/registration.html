@@ -1,0 +1,51 @@
+{% extends "layout.html" %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+
+{% block pageTitle %}Register – {{ serviceName }}{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-l">Create an account</h1>
+
+  {% if errors.length %}
+    {{ govukErrorSummary({
+      titleText: "There is a problem",
+      errorList: errors
+    }) }}
+  {% endif %}
+
+  <form method="post" action="/register" novalidate>
+    <input type="hidden" name="_csrf" value="{{ csrfToken }}">
+    {{ govukInput({
+      label: { text: "Full name", classes: "govuk-label--m" },
+      id: "fullName",
+      name: "fullName",
+      value: values.fullName,
+      errorMessage: errors | selectattr("href", "equalto", "#fullName") | first
+    }) }}
+
+    {{ govukInput({
+      label: { text: "Email address", classes: "govuk-label--m" },
+      hint: { text: "We will send a confirmation email to this address" },
+      id: "email",
+      name: "email",
+      type: "email",
+      autocomplete: "email",
+      value: values.email,
+      errorMessage: errors | selectattr("href", "equalto", "#email") | first
+    }) }}
+
+    {{ govukInput({
+      label: { text: "Password", classes: "govuk-label--m" },
+      hint: { text: "Must be at least 8 characters" },
+      id: "password",
+      name: "password",
+      type: "password",
+      autocomplete: "new-password",
+      errorMessage: errors | selectattr("href", "equalto", "#password") | first
+    }) }}
+
+    {{ govukButton({ text: "Create account" }) }}
+  </form>
+{% endblock %}

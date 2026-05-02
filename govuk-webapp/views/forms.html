@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{% block pageTitle %}Forms – {{ serviceName }}{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-l">Access your forms</h1>
+
+  <p class="govuk-body">
+    Your custom forms are built and hosted on GOV.UK Forms.
+    Click the button below to open the forms platform.
+  </p>
+
+  {{ govukInsetText({
+    text: "You must be logged in and have a gov.uk email address to create or edit forms on GOV.UK Forms."
+  }) }}
+
+  {{ govukButton({
+    text: "Go to GOV.UK Forms",
+    href: formsUrl,
+    classes: "govuk-button--start",
+    isStartButton: true
+  }) }}
+{% endblock %}

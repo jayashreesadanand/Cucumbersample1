@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+{% from "govuk/components/panel/macro.njk" import govukPanel %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}Registration complete – {{ serviceName }}{% endblock %}
+
+{% block content %}
+  {{ govukPanel({
+    titleText: "Registration complete",
+    html: "Your account has been created for <strong>" + name + "</strong>.<br>Check your email for a confirmation link."
+  }) }}
+
+  <p class="govuk-body">We have sent a confirmation email to the address you provided.</p>
+  <p class="govuk-body">
+    Once confirmed, you can access your custom forms below.
+  </p>
+
+  {{ govukButton({ text: "Access Forms", href: "/forms" }) }}
+{% endblock %}

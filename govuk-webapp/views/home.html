@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block pageTitle %}Home – {{ serviceName }}{% endblock %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Welcome to {{ serviceName }}</h1>
+  <p class="govuk-body">Use this service to register and access custom forms.</p>
+  <ul class="govuk-list">
+    <li>
+      {{ govukButton({ text: "Register", href: "/register", classes: "govuk-button--start" }) }}
+    </li>
+    <li>
+      {{ govukButton({ text: "Access Forms", href: "/forms", classes: "govuk-button--secondary" }) }}
+    </li>
+  </ul>
+{% endblock %}
